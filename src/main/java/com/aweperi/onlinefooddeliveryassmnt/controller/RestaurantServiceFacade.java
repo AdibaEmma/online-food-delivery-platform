@@ -45,12 +45,12 @@ public class RestaurantServiceFacade {
         return restaurantService.getRestaurantFiltered(partialFilter).stream().map(this::convertToDto).toList();
     }
 
-    private RestaurantDTO convertToDto(Restaurant post) {
-        return modelMapper.map(post, RestaurantDTO.class);
+    private RestaurantDTO convertToDto(Restaurant restaurant) {
+        return modelMapper.map(restaurant, RestaurantDTO.class);
     }
 
-    private Restaurant convertToEntity(RestaurantDTO countryDto) throws ParseException {
-        return modelMapper.map(countryDto, Restaurant.class);
+    private Restaurant convertToEntity(RestaurantDTO restaurantDTO) throws ParseException {
+        return modelMapper.map(restaurantDTO, Restaurant.class);
     }
 
 }
