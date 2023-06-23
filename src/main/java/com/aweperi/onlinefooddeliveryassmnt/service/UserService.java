@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
     private final UserRepository userRepository;
     @Override
-    public void registerUser(UserDTO userDTO) {
+    public void registerUser(User user) {
 
     }
 
     @Override
-    public String login(UserDTO userDTO) {
+    public String login(User user) {
         return null;
     }
 
