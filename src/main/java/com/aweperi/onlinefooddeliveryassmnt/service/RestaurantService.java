@@ -30,7 +30,7 @@ public class RestaurantService implements IRestaurantService{
     public Restaurant getRestaurantById(Long id) {
         var foundRestaurant = restaurantRepository.findById(id);
         if(foundRestaurant.isEmpty())
-            throw new RestaurantNotFoundException(String.format("Restaurant with id: %s", id));
+            throw new RestaurantNotFoundException(String.format("Restaurant with id: %s not found", id));
         return foundRestaurant.get();
     }
 
