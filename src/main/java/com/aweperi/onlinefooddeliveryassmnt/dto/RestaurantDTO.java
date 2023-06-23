@@ -15,6 +15,6 @@ public class RestaurantDTO {
     private Long id;
     @NotBlank
     private String name;
-    @NotEmpty
+    @NotBlank
     private String address;
 }
