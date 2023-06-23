@@ -25,6 +25,17 @@ public class RestaurantServiceFacade {
     Page<RestaurantDTO> getAllRestaurants(int page, int size, String sortBy, String sortOrder) {
         return restaurantService.getAllRestaurants(page, size, sortBy, sortOrder).map(this::convertToDto);
     }
+    public RestaurantDTO addRestaurant(RestaurantDTO requestBody) {
+        RestaurantDTO restaurantDTO = null;
+        try {
+            var restaurant = convertToEntity(requestBody);
+            restaurantDTO = convertToDto(restaurantService.addRestaurant(restaurant));
+        } catch (ParseException ex) {
+            log.error(ex.getMessage());
+            throw new RuntimeException(ex);
+        }
+        return restaurantDTO;
+    }
     private RestaurantDTO convertToDto(Restaurant post) {
         return modelMapper.map(post, RestaurantDTO.class);
     }
@@ -32,4 +43,5 @@ public class RestaurantServiceFacade {
     private Restaurant convertToEntity(RestaurantDTO countryDto) throws ParseException {
         return modelMapper.map(countryDto, Restaurant.class);
     }
+
 }

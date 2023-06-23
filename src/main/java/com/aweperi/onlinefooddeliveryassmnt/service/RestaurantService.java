@@ -1,5 +1,6 @@
 package com.aweperi.onlinefooddeliveryassmnt.service;
 
+import com.aweperi.onlinefooddeliveryassmnt.exceptions.RestaurantAlreadyExistsException;
 import com.aweperi.onlinefooddeliveryassmnt.exceptions.RestaurantNotFoundException;
 import com.aweperi.onlinefooddeliveryassmnt.model.Restaurant;
 import com.aweperi.onlinefooddeliveryassmnt.repository.RestaurantRepository;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +34,16 @@ public class RestaurantService implements IRestaurantService{
     }
 
     @Override
-    public Restaurant getRestaurantFiltered(String filter) {
-        return restaurantRepository.findByNameOrAddress(filter, filter).orElseThrow(RestaurantNotFoundException::new);
+    public List<Restaurant> getRestaurantFiltered(String filter) {
+        return restaurantRepository.findByNameContainingOrAddressContaining(filter, filter)
+                .orElseThrow(RestaurantNotFoundException::new);
+    }
+
+    @Override
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        var restaurantExists = restaurantRepository.existsByName(restaurant.getName());
+        if(restaurantExists) throw new RestaurantAlreadyExistsException();
+
+        return restaurantRepository.save(restaurant);
     }
 }
