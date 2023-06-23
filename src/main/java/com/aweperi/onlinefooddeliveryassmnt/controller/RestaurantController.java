@@ -1,5 +1,6 @@
 package com.aweperi.onlinefooddeliveryassmnt.controller;
 
+import com.aweperi.onlinefooddeliveryassmnt.dto.MenuItemDTO;
 import com.aweperi.onlinefooddeliveryassmnt.dto.RestaurantDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class RestaurantController {
     private final RestaurantServiceFacade restaurantService;
+    private final MenuItemServiceFacade menuItemService;
 
     @PostMapping()
     public ResponseEntity<?> createRestaurant(@Valid @RequestBody RestaurantDTO requestBody) {
@@ -51,6 +53,15 @@ public class RestaurantController {
                 HttpStatus.OK,
                 "Query return restaurants results",
                 restaurantService.getRestaurantsFiltered(partialFilter)
+        );
+    }
+
+    @PostMapping("/{restaurantId}/menu-items")
+    public ResponseEntity<?> createMenuItem(@PathVariable("restaurantId") Long restaurantId, @Valid @RequestBody MenuItemDTO requestBody) {
+        return ResponseHandler.handleResponseBody(
+                HttpStatus.CREATED,
+                "New menu item added",
+                menuItemService.addMenuItem(restaurantId, requestBody)
         );
     }
 }

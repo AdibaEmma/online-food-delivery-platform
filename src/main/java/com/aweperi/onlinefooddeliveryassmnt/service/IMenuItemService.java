@@ -7,5 +7,5 @@ import java.util.List;
 public interface IMenuItemService {
     MenuItem addMenuItem(Long restaurantId, MenuItem menuItem);
 
-    List<MenuItem> findMenuItemByRetaurant(Long restaurantId);
+    List<MenuItem> findMenuItemByRestaurant(Long restaurantId);
 }
