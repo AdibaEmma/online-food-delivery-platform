@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface IRestaurantService {
     Page<Restaurant> getAllRestaurants(int page, int size, String sortBy, String sortOrder);
+    Restaurant getRestaurantById(Long id);
     Restaurant getRestaurantFiltered(String filter);
 }
