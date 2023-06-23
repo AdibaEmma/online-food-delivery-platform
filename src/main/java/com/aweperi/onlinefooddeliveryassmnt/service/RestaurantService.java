@@ -4,6 +4,7 @@ import com.aweperi.onlinefooddeliveryassmnt.exceptions.RestaurantAlreadyExistsEx
 import com.aweperi.onlinefooddeliveryassmnt.exceptions.RestaurantNotFoundException;
 import com.aweperi.onlinefooddeliveryassmnt.model.Restaurant;
 import com.aweperi.onlinefooddeliveryassmnt.repository.RestaurantRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

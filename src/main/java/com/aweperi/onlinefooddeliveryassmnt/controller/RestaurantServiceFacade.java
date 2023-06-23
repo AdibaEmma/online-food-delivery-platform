@@ -36,6 +36,15 @@ public class RestaurantServiceFacade {
         }
         return restaurantDTO;
     }
+
+    public RestaurantDTO getRestaurantById(Long id) {
+        return convertToDto(restaurantService.getRestaurantById(id));
+    }
+
+    public List<RestaurantDTO> getRestaurantsFiltered(String partialFilter) {
+        return restaurantService.getRestaurantFiltered(partialFilter).stream().map(this::convertToDto).toList();
+    }
+
     private RestaurantDTO convertToDto(Restaurant post) {
         return modelMapper.map(post, RestaurantDTO.class);
     }

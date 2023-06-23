@@ -1,19 +1,22 @@
 package com.aweperi.onlinefooddeliveryassmnt.controller;
 
 import com.aweperi.onlinefooddeliveryassmnt.dto.RestaurantDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/restaurants")
 @RequiredArgsConstructor
+@Validated
 public class RestaurantController {
     private final RestaurantServiceFacade restaurantService;
 
     @PostMapping()
-    public ResponseEntity<?> createRestaurant(@RequestBody RestaurantDTO requestBody) {
+    public ResponseEntity<?> createRestaurant(@Valid @RequestBody RestaurantDTO requestBody) {
         return ResponseHandler.handleResponseBody(
                     HttpStatus.CREATED,
                     "New restaurant added",
@@ -30,6 +33,24 @@ public class RestaurantController {
         return ResponseHandler.handleResponseBody(HttpStatus.OK,
                 "Fetched Restaurants Paginated",
                 restaurantService.getAllRestaurants(page, size, sortBy, sortOrder)
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getRestaurantById(@PathVariable("id") Long id) {
+        return ResponseHandler.handleResponseBody(
+                HttpStatus.OK,
+                "Returned restaurant by id",
+                restaurantService.getRestaurantById(id)
+        );
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<?> findRestaurantsFiltered(@RequestParam("partialFilter") String partialFilter) {
+        return ResponseHandler.handleResponseBody(
+                HttpStatus.OK,
+                "Query return restaurants results",
+                restaurantService.getRestaurantsFiltered(partialFilter)
         );
     }
 }
