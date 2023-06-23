@@ -12,8 +12,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderService implements IOrderService {
     @Override
-    public Order createOrder(User user, MenuItem menuItem, int quantity) {
-        return null;
+    public Order createOrder(Long userId, Long menuItemId, int quantity) {
+
     }
 
     @Override
