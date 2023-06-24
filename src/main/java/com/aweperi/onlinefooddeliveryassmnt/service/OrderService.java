@@ -17,21 +17,21 @@ public class OrderService implements IOrderService {
     private final UserRepository userRepository;
 
     @Override
-    public Order createOrder(Long userId, Long menuItemId, int quantity) {
-        var user = userService.getUserById(userId);
-        var menuItem = menuItemService.getMenuItemById(menuItemId);
+    public Order createOrder(Order order) {
+        var user = userService.getUserById(order.getUser().getUserId());
+        var menuItem = menuItemService.getMenuItemById(order.getMenuItem().getId());
 
-        var order = Order.builder()
+        var newOrder = Order.builder()
                 .user(user)
                 .menuItem(menuItem)
-                .quantity(quantity)
+                .quantity(order.getQuantity())
                 .build();
-        orderRepository.save(order);
+        orderRepository.save(newOrder);
 
-        user.addUserOrder(order);
+        user.addUserOrder(newOrder);
         userRepository.save(user);
 
-        return order;
+        return newOrder;
     }
 
     @Override

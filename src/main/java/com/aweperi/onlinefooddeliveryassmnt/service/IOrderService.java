@@ -5,6 +5,6 @@ import com.aweperi.onlinefooddeliveryassmnt.model.Order;
 import java.util.List;
 
 public interface IOrderService {
-    Order createOrder(Long userId, Long menuItemId, int quantity);
+    Order createOrder(Order order);
     List<Order> getOrdersByUser(Long userId);
 }
