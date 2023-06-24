@@ -19,12 +19,17 @@ public class WebSecurityConfig {
      private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    private final String[] REQUEST_WHITELIST = {
+            "/api/v*/auth/login",
+            "/api/v*/auth/signup"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests((request) ->
-                    request.requestMatchers("").permitAll()
+                    request.requestMatchers(REQUEST_WHITELIST).permitAll()
                             .anyRequest().authenticated()
                     )
                 .sessionManagement((sessionManagement) ->
