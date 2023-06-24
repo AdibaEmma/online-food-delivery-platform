@@ -70,7 +70,7 @@ public class RestaurantController {
     @PutMapping("/{restaurantId}/orders/{orderId}/order-fulfilment")
     public ResponseEntity<?> updateOrderStatus(@PathVariable Long restaurantId,
                                                @PathVariable Long orderId,
-                                               @RequestParam String orderStatus) {
+                                               @RequestBody String orderStatus) {
         return ResponseHandler.handleResponseBody(
                 HttpStatus.ACCEPTED,
                 "Order status changed",
