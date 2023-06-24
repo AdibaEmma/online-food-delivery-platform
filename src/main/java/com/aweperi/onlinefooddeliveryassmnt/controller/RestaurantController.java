@@ -2,6 +2,7 @@ package com.aweperi.onlinefooddeliveryassmnt.controller;
 
 import com.aweperi.onlinefooddeliveryassmnt.dto.MenuItemDTO;
 import com.aweperi.onlinefooddeliveryassmnt.dto.RestaurantDTO;
+import com.aweperi.onlinefooddeliveryassmnt.service.IOrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class RestaurantController {
     private final RestaurantServiceFacade restaurantService;
     private final MenuItemServiceFacade menuItemService;
+    private final IOrderService orderService;
 
     @PostMapping()
     public ResponseEntity<?> createRestaurant(@Valid @RequestBody RestaurantDTO requestBody) {
@@ -62,6 +64,17 @@ public class RestaurantController {
                 HttpStatus.CREATED,
                 "New menu item added",
                 menuItemService.addMenuItem(restaurantId, requestBody)
+        );
+    }
+
+    @PutMapping("/{restaurantId}/orders/{orderId}/order-fulfilment")
+    public ResponseEntity<?> updateOrderStatus(@PathVariable Long restaurantId,
+                                               @PathVariable Long orderId,
+                                               @RequestParam String orderStatus) {
+        return ResponseHandler.handleResponseBody(
+                HttpStatus.ACCEPTED,
+                "Order status changed",
+                orderService.updateOrderStatus(restaurantId, orderId, orderStatus)
         );
     }
 }

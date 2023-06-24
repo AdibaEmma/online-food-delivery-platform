@@ -54,6 +54,13 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(), "User Not Found Error", ex.getMessage());
     }
 
+    @ExceptionHandler(value = OrderNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ErrorMessage orderNotFoundException(OrderNotFoundException ex) {
+        log.error(ex.getMessage());
+        return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(), "Order Not Found Error", ex.getMessage());
+    }
+
     @ExceptionHandler(value = RestaurantAlreadyExistsException.class)
     @ResponseStatus(value = HttpStatus.CONFLICT)
     public ErrorMessage restaurantAlreadyExistsException(RestaurantAlreadyExistsException ex) {

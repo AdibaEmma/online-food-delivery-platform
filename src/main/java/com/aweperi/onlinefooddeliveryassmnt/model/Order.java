@@ -29,5 +29,7 @@ public class Order {
 
     private int quantity;
 
+    private OrderStatus orderStatus;
+
     private LocalDateTime orderDate;
 }
