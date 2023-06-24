@@ -1,5 +1,6 @@
 package com.aweperi.onlinefooddeliveryassmnt.dto;
 
+import com.aweperi.onlinefooddeliveryassmnt.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class UserDTO {
     private String lastname;
     private String email;
     private String password;
+    private Role role;
 }
