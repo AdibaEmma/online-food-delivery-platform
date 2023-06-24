@@ -25,7 +25,7 @@ public class OrderService implements IOrderService {
     @Override
     public Order createOrder(Order order) {
         var user = userService.getUserById(order.getUser().getUserId());
-        var menuItem = menuItemService.getMenuItemById(order.getMenuItem().getId());
+        var menuItem = menuItemService.getMenuItemById(order.getMenuItem().getMenuItemId());
 
         var newOrder = Order.builder()
                 .user(user)

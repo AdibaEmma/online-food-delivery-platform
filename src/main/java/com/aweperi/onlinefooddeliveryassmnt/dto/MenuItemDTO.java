@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class MenuItemDTO {
     @Nullable
-    private Long id;
+    private Long menuItemId;
     @NotBlank
     private String name;
     @Min(1)

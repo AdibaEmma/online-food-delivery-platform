@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserServiceFacade userService;
 
-    @GetMapping("/{username}")
-    public ResponseEntity<?> getUserByUsername(@PathVariable("username") String username) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable("id") Long id) {
         return ResponseHandler.handleResponseBody(
                 HttpStatus.OK,
                 "Returned user by username",
-                userService.getUserByUsername(username)
+                userService.getUserById(id)
         );
     }
 }

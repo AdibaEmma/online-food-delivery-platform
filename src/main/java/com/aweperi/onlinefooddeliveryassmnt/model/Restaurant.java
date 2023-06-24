@@ -10,7 +10,8 @@ import lombok.*;
 @Table(name = "restaurants")
 public class Restaurant {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "[restaurants_seq]")
+    @SequenceGenerator(name = "[restaurants_seq]", sequenceName = "[restaurants_seq]", allocationSize = 1)
     private Long id;
     private String name;
     private String address;

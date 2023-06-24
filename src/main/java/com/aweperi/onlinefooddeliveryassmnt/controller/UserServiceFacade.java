@@ -20,8 +20,8 @@ public class UserServiceFacade {
     @Autowired
     private ModelMapper modelMapper;
 
-    public UserDTO getUserByUsername(String username) {
-        return convertToDto(userService.getUserById(username));
+    public UserDTO getUserById(Long id) {
+        return convertToDto(userService.getUserById(id));
     }
 
     private UserDTO convertToDto(User user) {
