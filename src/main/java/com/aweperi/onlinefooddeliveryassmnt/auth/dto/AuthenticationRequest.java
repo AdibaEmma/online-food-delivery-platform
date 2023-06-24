@@ -1,5 +1,6 @@
-package com.aweperi.onlinefooddeliveryassmnt.dto;
+package com.aweperi.onlinefooddeliveryassmnt.auth.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-    private Long id;
-    private String firstname;
-    private String lastname;
+public class AuthenticationRequest {
+    @NotBlank
     private String email;
+    @NotBlank
     private String password;
 }

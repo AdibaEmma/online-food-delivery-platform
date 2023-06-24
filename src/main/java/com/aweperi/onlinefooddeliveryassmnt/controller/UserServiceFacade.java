@@ -20,27 +20,6 @@ public class UserServiceFacade {
     @Autowired
     private ModelMapper modelMapper;
 
-    public Object registerUser(UserDTO requestBody) {
-        try {
-            var user = convertToEntity(requestBody);
-            userService.registerUser(user);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
-
-    public String loginUser(UserDTO userDTO) {
-        String token;
-        try {
-            var user = convertToEntity(userDTO);
-            token = userService.login(user);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        return token;
-    }
-
     public UserDTO getUserByUsername(String username) {
         return convertToDto(userService.getUserByUsername(username));
     }

@@ -12,16 +12,6 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
 
     @Override
-    public void registerUser(User user) {
-
-    }
-
-    @Override
-    public String login(User user) {
-        return null;
-    }
-
-    @Override
     public User getUserByUsername(String username) {
         return userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
