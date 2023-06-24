@@ -10,7 +10,11 @@ import java.util.LinkedHashMap;
 @Slf4j
 public class ResponseHandler {
     private static final LinkedHashMap<String, Object> jsonResponse = new LinkedHashMap<>();
-    public static ResponseEntity<?> handleResponseBody(HttpStatus statusCode, String message, @Nullable Object payload) {
+    public static ResponseEntity<?> handleResponseBody(
+            HttpStatus statusCode,
+            String message,
+            @Nullable Object payload
+    ) {
         jsonResponse.put("status", statusCode.value());
         jsonResponse.put("message", message);
         jsonResponse.put("payload", payload);
