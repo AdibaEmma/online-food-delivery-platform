@@ -1,9 +1,7 @@
 package com.aweperi.onlinefooddeliveryassmnt.service;
 
-import com.aweperi.onlinefooddeliveryassmnt.dto.RestaurantDTO;
 import com.aweperi.onlinefooddeliveryassmnt.model.Restaurant;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
