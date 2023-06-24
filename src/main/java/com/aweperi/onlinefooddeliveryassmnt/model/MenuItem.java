@@ -15,8 +15,7 @@ import java.math.BigDecimal;
 @Table(name = "menu_items")
 public class MenuItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "[menu_items_seq]")
-    @SequenceGenerator(name = "[menu_items_seq]", sequenceName = "[menu_items_seq]", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_item_id")
     private Long menuItemId;
 

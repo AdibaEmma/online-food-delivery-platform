@@ -1,6 +1,6 @@
 package com.aweperi.onlinefooddeliveryassmnt.controller;
 
-import com.aweperi.onlinefooddeliveryassmnt.dto.OrderDTO;
+import com.aweperi.onlinefooddeliveryassmnt.dto.OrderRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class OrderController {
     private final OrderServiceFacade orderService;
 
     @PostMapping
-    public ResponseEntity<?> addOrder(@Valid @RequestBody OrderDTO request) throws ParseException {
+    public ResponseEntity<?> addOrder(@Valid @RequestBody OrderRequest request) {
         return ResponseHandler.handleResponseBody(
                 HttpStatus.CREATED,
                 "New order added",

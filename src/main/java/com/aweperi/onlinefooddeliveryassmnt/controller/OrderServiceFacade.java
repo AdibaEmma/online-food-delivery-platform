@@ -1,6 +1,7 @@
 package com.aweperi.onlinefooddeliveryassmnt.controller;
 
 import com.aweperi.onlinefooddeliveryassmnt.dto.OrderDTO;
+import com.aweperi.onlinefooddeliveryassmnt.dto.OrderRequest;
 import com.aweperi.onlinefooddeliveryassmnt.model.Order;
 import com.aweperi.onlinefooddeliveryassmnt.service.IOrderService;
 import lombok.RequiredArgsConstructor;
@@ -21,15 +22,9 @@ public class OrderServiceFacade {
     @Autowired
     private ModelMapper modelMapper;
 
-    public OrderDTO createOrder(OrderDTO request) throws ParseException {
+    public OrderDTO createOrder(OrderRequest request) {
         OrderDTO orderDTO;
-        try {
-             var order = convertToEntity(request);
-             orderDTO = convertToDto(orderService.createOrder(order));
-        }catch (ParseException ex) {
-            log.error(ex.getMessage());
-            throw new RuntimeException(ex);
-        }
+        orderDTO = convertToDto(orderService.createOrder(request));
         return orderDTO;
     }
 

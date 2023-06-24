@@ -1,5 +1,6 @@
 package com.aweperi.onlinefooddeliveryassmnt.service;
 
+import com.aweperi.onlinefooddeliveryassmnt.dto.OrderRequest;
 import com.aweperi.onlinefooddeliveryassmnt.exceptions.OrderNotFoundException;
 import com.aweperi.onlinefooddeliveryassmnt.exceptions.RestaurantNotFoundException;
 import com.aweperi.onlinefooddeliveryassmnt.model.Order;
@@ -23,14 +24,14 @@ public class OrderService implements IOrderService {
     private final RestaurantRepository restaurantRepository;
 
     @Override
-    public Order createOrder(Order order) {
-        var user = userService.getUserById(order.getUser().getUserId());
-        var menuItem = menuItemService.getMenuItemById(order.getMenuItem().getMenuItemId());
+    public Order createOrder(OrderRequest request) {
+        var user = userService.getUserById(request.getUserId());
+        var menuItem = menuItemService.getMenuItemById(request.getMenuItemId());
 
         var newOrder = Order.builder()
                 .user(user)
                 .menuItem(menuItem)
-                .quantity(order.getQuantity())
+                .quantity(request.getQuantity())
                 .orderStatus(OrderStatus.PENDING)
                 .orderDate(LocalDateTime.now())
                 .build();
