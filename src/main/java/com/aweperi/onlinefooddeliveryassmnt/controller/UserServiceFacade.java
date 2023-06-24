@@ -21,7 +21,7 @@ public class UserServiceFacade {
     private ModelMapper modelMapper;
 
     public UserDTO getUserByUsername(String username) {
-        return convertToDto(userService.getUserByUsername(username));
+        return convertToDto(userService.getUserById(username));
     }
 
     private UserDTO convertToDto(User user) {

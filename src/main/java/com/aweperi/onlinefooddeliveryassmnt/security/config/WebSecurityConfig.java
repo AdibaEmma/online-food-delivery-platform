@@ -20,8 +20,7 @@ public class WebSecurityConfig {
     private final AuthenticationProvider authenticationProvider;
 
     private final String[] REQUEST_WHITELIST = {
-            "/api/v*/auth/login",
-            "/api/v*/auth/signup"
+            "/api/v*/auth/**",
     };
 
     @Bean

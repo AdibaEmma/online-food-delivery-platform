@@ -8,4 +8,6 @@ public interface IMenuItemService {
     MenuItem addMenuItem(Long restaurantId, MenuItem menuItem);
 
     List<MenuItem> findMenuItemByRestaurant(Long restaurantId);
+
+    MenuItem getMenuItemById(Long menuItemId);
 }

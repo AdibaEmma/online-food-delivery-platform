@@ -1,5 +1,6 @@
 package com.aweperi.onlinefooddeliveryassmnt.service;
 
+import com.aweperi.onlinefooddeliveryassmnt.exceptions.MenuItemNotFoundException;
 import com.aweperi.onlinefooddeliveryassmnt.model.MenuItem;
 import com.aweperi.onlinefooddeliveryassmnt.repository.MenuItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,11 @@ public class MenuItemService implements IMenuItemService{
         List<MenuItem> menuItems = menuItemRepository.findByRestaurant(foundRestaurant);
         log.info("Menu Items: " + menuItems);
         return menuItems;
+    }
+
+    @Override
+    public MenuItem getMenuItemById(Long menuItemId) {
+        return menuItemRepository.findById(menuItemId)
+                .orElseThrow(MenuItemNotFoundException::new);
     }
 }
