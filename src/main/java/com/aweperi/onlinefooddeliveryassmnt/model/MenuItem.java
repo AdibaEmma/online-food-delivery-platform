@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Table(name = "menu_items")
 public class MenuItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     private String name;

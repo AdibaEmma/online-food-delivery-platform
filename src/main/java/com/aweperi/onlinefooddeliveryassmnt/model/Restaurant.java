@@ -10,7 +10,7 @@ import lombok.*;
 @Table(name = "restaurants")
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
     private String address;
