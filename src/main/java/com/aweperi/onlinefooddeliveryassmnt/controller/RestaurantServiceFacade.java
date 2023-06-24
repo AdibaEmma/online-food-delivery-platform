@@ -52,5 +52,4 @@ public class RestaurantServiceFacade {
     private Restaurant convertToEntity(RestaurantDTO restaurantDTO) throws ParseException {
         return modelMapper.map(restaurantDTO, Restaurant.class);
     }
-
 }
