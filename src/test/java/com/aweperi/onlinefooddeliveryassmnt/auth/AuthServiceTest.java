@@ -22,21 +22,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AuthServiceTest {
-
     @Mock
     private UserRepository userRepository;
-
     @Mock
     private PasswordEncoder passwordEncoder;
-
     @Mock
     private JwtService jwtService;
-
     @Mock
     private AuthenticationManager authenticationManager;
 
@@ -69,15 +64,14 @@ public class AuthServiceTest {
         // Add more assertions to validate the response
     }
 
-    @Test(expected = UserAlreadyExistsException.class)
+    @Test
     public void testRegisterUser_UserAlreadyExists_ThrowsUserAlreadyExistsException() {
-        // Arrange
         RegisterRequest registerRequest = new RegisterRequest("John", "Doe",
                 "john@example.com", "password123");
         Mockito.when(userRepository.existsByEmail(registerRequest.getEmail())).thenReturn(true);
 
-        // Act
-        authService.registerUser(registerRequest);
+        assertThrows(UserAlreadyExistsException.class, () -> authService.registerUser(registerRequest));
+
     }
 
     @Test
@@ -106,14 +100,13 @@ public class AuthServiceTest {
         assertEquals(jwtToken, response.getToken());
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test
     public void testLogin_UserNotFound_ThrowsUserNotFoundException() {
         // Arrange
         AuthenticationRequest loginRequest = new AuthenticationRequest("john@example.com", "password123");
         Mockito.when(authenticationManager.authenticate(Mockito.any(Authentication.class))).thenReturn(null);
         Mockito.when(userRepository.findByEmail(loginRequest.getEmail())).thenReturn(Optional.empty());
 
-        // Act
-        authService.login(loginRequest);
+        assertThrows(UserNotFoundException.class, () -> authService.login(loginRequest));
     }
 }
