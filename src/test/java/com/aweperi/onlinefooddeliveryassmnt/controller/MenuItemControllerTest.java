@@ -1,7 +1,7 @@
 package com.aweperi.onlinefooddeliveryassmnt.controller;
 
-import com.aweperi.onlinefooddeliveryassmnt.model.MenuItem;
-import com.aweperi.onlinefooddeliveryassmnt.model.Restaurant;
+import com.aweperi.onlinefooddeliveryassmnt.dto.MenuItemDTO;
+import com.aweperi.onlinefooddeliveryassmnt.dto.RestaurantDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -31,9 +31,9 @@ public class MenuItemControllerTest {
     public void testGetMenuItemsByRestaurant_ValidRestaurantId_ReturnsMenuItems() {
         // Arrange
         Long restaurantId = 1L;
-        List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(1L, "Burger", new BigDecimal("9.99"), new Restaurant()));
-        menuItems.add(new MenuItem(2L, "Pizza", new BigDecimal("12.99"), new Restaurant()));
+        List<MenuItemDTO> menuItems = new ArrayList<>();
+        menuItems.add(new MenuItemDTO(1L, "Burger", new BigDecimal("9.99"), new RestaurantDTO()));
+        menuItems.add(new MenuItemDTO(2L, "Pizza", new BigDecimal("12.99"), new RestaurantDTO()));
         Mockito.when(menuItemService.findMenuItemByRestaurant(restaurantId)).thenReturn(menuItems);
 
         // Act

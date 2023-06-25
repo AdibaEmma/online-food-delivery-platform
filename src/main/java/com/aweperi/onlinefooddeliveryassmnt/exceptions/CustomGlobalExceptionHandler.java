@@ -34,7 +34,8 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(fieldError -> String.format("%s %s", fieldError.getField(), fieldError.getDefaultMessage()))
+                .map(fieldError -> String.format("%s %s", fieldError.getField(),
+                        fieldError.getDefaultMessage()))
                 .collect(Collectors.toList());
         body.put("errors", errors);
         return new ResponseEntity<>(body, headers, HttpStatus.BAD_REQUEST);
@@ -44,35 +45,40 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ErrorMessage restaurantNotFoundException(RestaurantNotFoundException ex) {
         log.error(ex.getMessage());
-        return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(), "Restaurant Not Found Error", ex.getMessage());
+        return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(),
+                "Restaurant Not Found Error", ex.getMessage());
     }
 
     @ExceptionHandler(value = UserNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ErrorMessage userNotFoundException(UserNotFoundException ex) {
         log.error(ex.getMessage());
-        return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(), "User Not Found Error", ex.getMessage());
+        return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(),
+                "User Not Found Error", ex.getMessage());
     }
 
     @ExceptionHandler(value = OrderNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ErrorMessage orderNotFoundException(OrderNotFoundException ex) {
         log.error(ex.getMessage());
-        return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(), "Order Not Found Error", ex.getMessage());
+        return new ErrorMessage(HttpStatus.NOT_FOUND.value(), new Date(),
+                "Order Not Found Error", ex.getMessage());
     }
 
     @ExceptionHandler(value = RestaurantAlreadyExistsException.class)
     @ResponseStatus(value = HttpStatus.CONFLICT)
     public ErrorMessage restaurantAlreadyExistsException(RestaurantAlreadyExistsException ex) {
         log.error(ex.getMessage());
-        return new ErrorMessage(HttpStatus.CONFLICT.value(), new Date(), "Existing Restaurant Entity Error", ex.getMessage());
+        return new ErrorMessage(HttpStatus.CONFLICT.value(), new Date(),
+                "Existing Restaurant Entity Error", ex.getMessage());
     }
 
     @ExceptionHandler(value = UserAlreadyExistsException.class)
     @ResponseStatus(value = HttpStatus.CONFLICT)
     public ErrorMessage userAlreadyExistsException(UserAlreadyExistsException ex) {
         log.error(ex.getMessage());
-        return new ErrorMessage(HttpStatus.CONFLICT.value(), new Date(), "Existing Restaurant Entity Error", ex.getMessage());
+        return new ErrorMessage(HttpStatus.CONFLICT.value(), new Date(),
+                "Existing User Entity Error", ex.getMessage());
     }
 
     @ExceptionHandler(value = ClassNotFoundException.class)
